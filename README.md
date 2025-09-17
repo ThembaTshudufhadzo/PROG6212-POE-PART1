@@ -1,44 +1,6 @@
-​ 
-
-​
-​ 
-
- 
-
-Table of Contents 
-
-​​Table of Contents	1 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​ 
-
-​​ 
-
- 
-
- 
-
- 
-
+PROG6212 POE PART1
+ST10461617
+Tshudufhadzo Themba
  
 
 1. Documentation 
@@ -80,7 +42,7 @@ Document: This class is used to associate a particular claim with supporting doc
 In addition to minimizing redundancy and guaranteeing data integrity, this database design offers a scalable framework for future expansion when new features are added. 
 
  
-
+The ApplicationDbContext manages the lifecycle of the database tables for ApplicationUser and IdentityRole. The one-to-many relationship between ApplicationUser and Claim ensures that each claim is correctly associated with a specific user. This structure provides a clear data model for the application.
  
 
  
