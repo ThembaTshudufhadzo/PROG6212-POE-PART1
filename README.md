@@ -1,6 +1,16 @@
 PROG6212 POE PART1
 ST10461617
 Tshudufhadzo Themba
+
+How to Run the Project
+
+Clone the repository: git clone : (https://github.com/ThembaTshudufhadzo/PROG6212-POE-PART1.git)
+
+Open the solution file in Visual Studio.
+
+Restore NuGet packages.
+
+Run the project (F5).
  
 
 1. Documentation 
