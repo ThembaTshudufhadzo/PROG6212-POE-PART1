@@ -1,0 +1,70 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+    <div class="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-xl shadow-lg border border-gray-700">
+        <h1 class="text-3xl font-bold text-center text-green-400">@ViewData["Title"]</h1>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="space-y-6">
+            <h2 class="text-xl font-bold text-center text-green-400">Create a new account.</h2>
+            <hr class="border-gray-700" />
+            <div asp-validation-summary="ModelOnly" class="text-red-600" role="alert"></div>
+
+            <div class="mb-3">
+                <label asp-for="Input.FirstName" class="block text-gray-200">First Name</label>
+                <input asp-for="Input.FirstName" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" autocomplete="given-name" aria-required="true" />
+                <span asp-validation-for="Input.FirstName" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.LastName" class="block text-gray-200">Last Name</label>
+                <input asp-for="Input.LastName" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" autocomplete="family-name" aria-required="true" />
+                <span asp-validation-for="Input.LastName" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Email" class="block text-gray-200">Email</label>
+                <input asp-for="Input.Email" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" autocomplete="username" aria-required="true" />
+                <span asp-validation-for="Input.Email" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Module" class="block text-gray-200">Module</label>
+                <input asp-for="Input.Module" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" aria-required="true" />
+                <span asp-validation-for="Input.Module" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Qualification" class="block text-gray-200">Qualification</label>
+                <input asp-for="Input.Qualification" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" aria-required="true" />
+                <span asp-validation-for="Input.Qualification" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Role" class="block text-gray-200">Role</label>
+                <select asp-for="Input.Role" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" aria-required="true">
+                    <option value="">Select Role</option>
+                    <option value="Lecturer">Lecturer</option>
+                    <option value="Coordinator">Programme Coordinator</option>
+                    <option value="Manager">Academic Manager</option>
+                    <option value="HR">HR</option>
+                </select>
+                <span asp-validation-for="Input.Role" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Password" class="block text-gray-200">Password</label>
+                <input asp-for="Input.Password" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" autocomplete="new-password" aria-required="true" />
+                <span asp-validation-for="Input.Password" class="text-red-600 text-sm"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.ConfirmPassword" class="block text-gray-200">Confirm Password</label>
+                <input asp-for="Input.ConfirmPassword" class="form-control mt-1 block w-full rounded-md border-gray-600 shadow-sm bg-gray-700 text-gray-100 focus:border-green-400 focus:ring focus:ring-green-400 focus:ring-opacity-50" autocomplete="new-password" aria-required="true" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-red-600 text-sm"></span>
+            </div>
+
+            <button id="registerSubmit" type="submit" class="w-full px-4 py-2 font-bold text-gray-900 bg-green-500 rounded-md shadow-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 hover:shadow-green-500/50 transition-all duration-300">Register</button>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

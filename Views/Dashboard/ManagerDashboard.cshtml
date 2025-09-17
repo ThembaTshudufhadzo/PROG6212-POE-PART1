@@ -1,0 +1,103 @@
+﻿@model CMCSWebApp.Models.ManagerDashboardViewModel
+
+@{
+    ViewData["Title"] = "Manager Dashboard";
+    Layout = "_Layout";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">CMCS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @{
+                    var activeLinkClass = "nav-link fw-bold active";
+                    var inactiveLinkClass = "nav-link";
+                }
+                <li class="nav-item">
+                    <a href="/Home/ManagerDashboard" class="@(ViewData["Title"] == "Manager Dashboard" ? activeLinkClass : inactiveLinkClass)">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="@(ViewData["Title"] == "Claim Approvals" ? activeLinkClass : inactiveLinkClass)">Claim Approvals</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="@(ViewData["Title"] == "Reports" ? activeLinkClass : inactiveLinkClass)">Reports</a>
+                </li>
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="d-flex">
+                <button type="submit" class="btn btn-outline-light">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<main class="pb-3">
+    <div class="container py-4">
+        <h1 class="display-4 text-primary fw-bold mb-1">Welcome, Academic Manager! 👑</h1>
+        <p class="lead text-secondary mb-4">Oversee all claims and manage lecturer records with precision.</p>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="card text-center bg-warning text-white h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Pending Claims</h5>
+                        <p class="card-text display-2 fw-bolder">@Model.PendingClaimsCount</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-success text-white h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Approved Claims</h5>
+                        <p class="card-text display-2 fw-bolder">@Model.ApprovedClaimsCount</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center bg-info text-dark h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Total Claims</h5>
+                        <p class="card-text display-2 fw-bolder">@Model.TotalClaimsCount</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="h3 text-secondary mb-3">Claims to be Reviewed</h2>
+        <div class="card shadow">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th scope="col" class="text-muted">Claim ID</th>
+                                <th scope="col" class="text-muted">Lecturer</th>
+                                <th scope="col" class="text-muted">Claim Period</th>
+                                <th scope="col" class="text-muted">Status</th>
+                                <th scope="col" class="text-muted">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var claim in Model.ClaimsForReview)
+                            {
+                                <tr>
+                                    <td class="text-muted">@claim.ClaimId</td>
+                                    <td class="text-muted">@claim.LecturerName</td>
+                                    <td class="text-muted">@claim.ClaimPeriod</td>
+                                    <td><span class="badge bg-warning text-dark">@claim.Status</span></td>
+                                    <td>
+                                        <a asp-action="ViewDetails" asp-controller="Claims" asp-route-id="@claim.ClaimId" class="btn btn-sm btn-primary">View Details</a>
+                                        <a asp-action="Approve" asp-controller="Claims" asp-route-id="@claim.ClaimId" class="btn btn-sm btn-success">Approve</a>
+                                        <a asp-action="Reject" asp-controller="Claims" asp-route-id="@claim.ClaimId" class="btn btn-sm btn-danger">Reject</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

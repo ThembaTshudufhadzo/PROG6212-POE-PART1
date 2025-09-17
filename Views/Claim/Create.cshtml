@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Create New Claim";
+    Layout = "_Layout";
+}
+
+<div class="container py-4">
+    <h1 class="display-4 text-primary fw-bold mb-3">Create New Claim</h1>
+    <p class="lead text-secondary mb-4">Fill out the form below to submit a new monthly claim.</p>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="claimPeriod" class="form-label">Claim Period</label>
+                    <input type="month" class="form-control" id="claimPeriod" name="ClaimPeriod" required>
+                    <small class="form-text text-muted">Select the month for this claim.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="claimAmount" class="form-label">Claim Amount ($)</label>
+                    <input type="number" class="form-control" id="claimAmount" name="ClaimAmount" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="supportingDocuments" class="form-label">Supporting Documents</label>
+                    <input type="file" class="form-control" id="supportingDocuments" name="supportingDocuments" multiple>
+                    <small class="form-text text-muted">Upload receipts, invoices, or other documents.</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3">Submit Claim</button>
+            </form>
+        </div>
+    </div>
+</div>

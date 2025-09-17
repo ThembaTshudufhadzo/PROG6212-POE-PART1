@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "HR Dashboard";
+    Layout = "_Layout";
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">CMCS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                @{
+                    var activeLinkClass = "nav-link fw-bold active";
+                    var inactiveLinkClass = "nav-link";
+                }
+                <li class="nav-item">
+                    <a href="/Home/HRDashboard" class="@(ViewData["Title"] == "HR Dashboard" ? activeLinkClass : inactiveLinkClass)">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="@(ViewData["Title"] == "Lecturer Records" ? activeLinkClass : inactiveLinkClass)">Lecturer Records</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Claim" asp-action="Create" class="nav-link">New Claim</a>
+                </li>
+            </ul>
+            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm" class="d-flex">
+                <button type="submit" class="btn btn-outline-light">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-4">
+    <h1 class="display-4 text-info fw-bold mb-1">Welcome, HR! 💼</h1>
+    <p class="lead text-secondary mb-4">Manage lecturer data and process approved claims efficiently.</p>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card text-center bg-warning text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Claims to be Processed</h5>
+                    <p class="card-text display-2 fw-bolder">5</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center bg-secondary text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Total Lecturers</h5>
+                    <p class="card-text display-2 fw-bolder">50</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center bg-success text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Claims Processed This Month</h5>
+                    <p class="card-text display-2 fw-bolder">25</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="h3 text-secondary mb-3">Approved Claims</h2>
+    <div class="card shadow">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th scope="col" class="text-muted">Claim ID</th>
+                            <th scope="col" class="text-muted">Lecturer Name</th>
+                            <th scope="col" class="text-muted">Claim Period</th>
+                            <th scope="col" class="text-muted">Payment Due</th>
+                            <th scope="col" class="text-muted">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-muted">#CMCS-101</td>
+                            <td class="text-muted">John Doe</td>
+                            <td class="text-muted">July 2025</td>
+                            <td class="text-muted">R 5,000</td>
+                            <td>
+                                <button class="btn btn-success">Process Payment</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">#CMCS-102</td>
+                            <td class="text-muted">Jane Smith</td>
+                            <td class="text-muted">June 2025</td>
+                            <td class="text-muted">R 6,500</td>
+                            <td>
+                                <button class="btn btn-success">Process Payment</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
